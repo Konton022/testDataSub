@@ -8,7 +8,8 @@ document.getElementById("app").innerHTML = `
 Также AClass должен иметь метод “fill”, 
 который заполняет массив Numbers случайными числами; 
 метод “factorial”, который возвращает массив факториалов из массива Numbers; 
-и абстрактный метод “sort”. Конструктор принимает один параметр “n” 
+и абстрактный метод “sort”. 
+Конструктор принимает один параметр “n” 
 и вызывает метод “fill”. Метод “fill” можно вызывать только из методов класса “AClass”. 
 Метод “factorial” может вызываться из класса AClass и из дочерних классов.
 Реализовать два дочерних класса “Class1” и “Class2” с методом “sort” который сортирует массив Numbers, 
@@ -41,10 +42,34 @@ class AClass {
     });
     return arr;
   }
+  sort() {
+    return this.numbers.sort(function (a, b) {
+      return a - b;
+    });
+  }
 }
 
-let obj = new AClass(5);
-console.log(obj);
+class Class1 extends AClass {
+  sort() {
+    return "return sort1";
+  }
+}
+class Class2 extends AClass {
+  sort() {
+    return "return sort2";
+  }
+}
+console.log(Class1);
 
-console.log(obj.fill(10));
-console.log(obj.factorial());
+let class1 = new Class1(5);
+let class2 = new Class2(10);
+console.log(class1.fill(10));
+console.log(class1.sort());
+console.log(class2.fill(10));
+console.log(class2.sort());
+
+//let arrA = new AClass(5);
+//console.log(arrA);
+//console.log("fill", arrA.fill(20));
+//console.log("sort", arrA.sort());
+//console.log("fact", arrA.factorial());
